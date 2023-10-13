@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		String str[];
 		HashMap<Integer, Integer> hm = new HashMap<>();
 		Deque<Integer> dq = new ArrayDeque<Integer>();
@@ -58,6 +59,8 @@ public class Main {
 		}
 		Collections.sort(원래줄);
 		for(int i : 원래줄)
-			System.out.println(i);
+			sb.append(i+"\n");
+		sb.setLength(sb.length()-1);
+		System.out.println(sb.toString());
 	}
 }
