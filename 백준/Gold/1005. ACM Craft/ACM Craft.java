@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -11,21 +12,21 @@ public class Main {
 		int T = Integer.parseInt(br.readLine());
 		StringBuilder sb = new StringBuilder();
 			for(int tc=0; tc<T; tc++) {
-			str = br.readLine().split(" ");
-			int V = Integer.parseInt(str[0]);
-			int E = Integer.parseInt(str[1]);
+			StringTokenizer st = new StringTokenizer(br.readLine()," ");
+			int V = Integer.parseInt(st.nextToken());
+			int E = Integer.parseInt(st.nextToken());
 			int[] cost = new int[V];
-			str = br.readLine().split(" ");
-			for(int i=0; i<str.length; i++)	cost[i] = Integer.parseInt(str[i]);
+			st = new StringTokenizer(br.readLine()," ");
+			for(int i=0; i<V; i++)	cost[i] = Integer.parseInt(st.nextToken());
 			boolean visit[] = new boolean[V];
 			int degrees[] = new int[V];
 			ArrayList<ArrayList<Integer>> 그래프 = new ArrayList<>();
 			PriorityQueue<int[]> pq = new PriorityQueue<>((o1,o2) -> o1[1]-o2[1]);
 			for(int i=0; i<V; i++)	그래프.add(new ArrayList<>());
 			for(int i=0; i<E; i++) {
-				str = br.readLine().split(" ");
-				int from = Integer.parseInt(str[0])-1;
-				int to = Integer.parseInt(str[1])-1;
+				st = new StringTokenizer(br.readLine()," ");
+				int from = Integer.parseInt(st.nextToken())-1;
+				int to = Integer.parseInt(st.nextToken())-1;
 				그래프.get(from).add(to);
 				degrees[to]++;
 			}
