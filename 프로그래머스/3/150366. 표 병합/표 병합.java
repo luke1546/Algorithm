@@ -5,7 +5,7 @@ class Solution {
     static int[] parents;
     static StringBuilder sb = new StringBuilder();
     static HashMap<Integer, String> hm = new HashMap<>();
-    static int SIZE = 2551;
+    static int SIZE = 2501;
     public String[] solution(String[] commands) {
         String[] answer = {};
         parents = new int[SIZE];
@@ -23,8 +23,7 @@ class Solution {
             if(c.equals("UNMERGE")) unmerge(st);
             if(c.equals("PRINT")) print(st);
         }
-        if(sb.length()!=0)  answer = sb.toString().split(" ");
-        // for(int key : hm.keySet()) System.out.println("key : " + key + "value : " + hm.get(key));
+        answer = sb.toString().split(" ");
         return answer;
     }
     private static void union(int a, int b){
@@ -58,17 +57,15 @@ class Solution {
         hm.put(fk1,"EMPTY");
         hm.put(fk2,"EMPTY");
         union(fk1, fk2);
-        if(!str.equals("EMPTY"))   hm.put(fk1,str);
+        hm.put(fk1,str);
     }
     private static void unmerge(StringTokenizer st){
         ArrayDeque<Integer> dq = new ArrayDeque<>();
         int key = getKey(st);
         int fk = find(key);
         for(int i=0; i<SIZE; i++)   if(find(i) == fk) dq.offer(i);
-        while(!dq.isEmpty()){
-            int x = dq.poll();
-            parents[x] = x;
-        }
+        while(!dq.isEmpty())    parents[dq.peek()] = dq.poll();
+        
         if(fk!=key){
             hm.put(key,hm.get(fk));
             hm.put(fk,"EMPTY");
@@ -78,12 +75,11 @@ class Solution {
         int key = getKey(st);
         int fk = find(key);
         sb.append(hm.get(fk)+" ");
-        // else    sb.append("EMPTY ");
     }
     private static int getKey(StringTokenizer st){
         int r = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
-        int key = (r)*50+c;
+        int key = (r-1)*50+c;
         return key;
     }
 }
