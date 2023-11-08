@@ -4,22 +4,26 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
 	static int R,C, dirs[][] = {{-1,0},{0,1},{1,0},{0,-1}};
 	static char[][] map;
-	
 	static int hole = 0;
-	
 	static ArrayDeque<int[]> ball = new ArrayDeque<int[]>();
-	
+	static HashMap<String, Boolean> visit = new HashMap<>();
+	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		map = new char[R][C];
+		
+		
+		
+		
 		int s[] = new int[4];
 		for(int i=0; i<R; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -46,6 +50,10 @@ public class Main {
 	private static int bfs() {
 		while(!ball.isEmpty()) {
 			int cur[] = ball.poll();
+			for(int i=0; i<4; i++)	sb.append(cur[i]);
+			if(visit.containsKey(sb.toString()))	continue;
+			visit.put(sb.toString(), true);
+			sb = new StringBuilder();
 			if(cur[5] == 1)	continue;
 			else if(cur[4] == 1) return 1;
 			if(cur[6] > 10) return 0;
@@ -94,9 +102,7 @@ public class Main {
 			else if(map[nr][nc] == 'O') {
 				return new int[] {-1,-1};
 			}
-			else {
-				break;
-			}
+			else	break;
 		}
 		return cur;
 	}
