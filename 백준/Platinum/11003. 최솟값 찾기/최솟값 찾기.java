@@ -1,13 +1,15 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		ArrayDeque<int[]> dq = new ArrayDeque<>();
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		int N = Integer.parseInt(st.nextToken());
@@ -19,13 +21,11 @@ public class Main {
 		
 		for(int i=0; i<N; i++) {
 			if(!dq.isEmpty() && dq.peekFirst()[1] < (i-L+1)) dq.pollFirst();
-			while(!dq.isEmpty() && dq.peekLast()[0] >= arr[i]) {
-				dq.pollLast();
-			}
+			while(!dq.isEmpty() && dq.peekLast()[0] >= arr[i])	dq.pollLast();
 			min = Math.min(min, arr[i]);
 			dq.offer(new int[] {arr[i],i});
-			sb.append(dq.peekFirst()[0] + " ");
+			bw.write(dq.peekFirst()[0] + " ");
 		}
-		System.out.println(sb.toString());
+		bw.flush();
 	}
 }
