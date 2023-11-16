@@ -21,32 +21,31 @@ public class Main {
 			int b = Integer.parseInt(st.nextToken());
 			if(a==1) {
 				int index = 1;
-				while(index < (size/2)) {
-					if(segment[index] >= b)	index*=2;
+				while(index < (size>>1)) {
+					if(segment[index] >= b)	index<<=1;
 					else	b-=segment[index++];
 				}
 				if(segment[index] < b)	index++;
-				segment[index] -= 1;
-				sb.append(index-size/2+1).append("\n");
-				index/=2;
+				segment[index]--;
+				sb.append(index-(size>>1)+1).append("\n");
+				index>>=1;
 				while(index > 0) {
 					segment[index]--;
-					index/=2;
+					index>>=1;
 				}
 			}else {
 				int c = Integer.parseInt(st.nextToken());
-				int index = b+size/2-1;
+				int index = b+(size>>1)-1;
 				while(index > 0) {
 					segment[index]+=c;
-					index/=2;
+					index>>=1;
 				}
-				
 			}
 		}
 		System.out.println(sb.toString());
 	}
 	private static void makeSegment(int taste) {
-		int size = (int)Math.pow(2, Math.ceil(Math.log(taste) / Math.log(2)))*2;
+		int size = (int)Math.pow(2, Math.ceil(Math.log(taste) / Math.log(2)))<<1;
 		segment = new int[size];
 	}
 }
