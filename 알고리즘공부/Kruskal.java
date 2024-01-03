@@ -48,6 +48,7 @@ public class Kruskal {
 }
 
 /*
+bj_1197
 3 3
 1 2 1
 2 3 2
