@@ -18,15 +18,9 @@ public class Main {
 			for(int j=0; j<N; j++) {
 				map[i][j] = str.charAt(j);
 				if(map[i][j] == '#') {
-					if(dq.isEmpty())	{
+					if(dq.isEmpty()){
 						map[i][j] = '*';
-						for(int d=0; d<4; d++) {
-							int nr = i + dirs[d][0];
-							int nc = j + dirs[d][1];
-							if(nr >= 0 && nr < N && nc >= 0 && nc < N && map[nr][nc] != '*') {
-								dq.offer(new int[] {i, j, d, 0});
-							}
-						}
+						for(int d=0; d<4; d++)	dq.offer(new int[] {i, j, d, 0});
 					}
 				}
 			}
