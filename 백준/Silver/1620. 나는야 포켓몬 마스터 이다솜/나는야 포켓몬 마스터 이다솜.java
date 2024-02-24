@@ -12,12 +12,13 @@ public class Main {
     int no = 1;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine()," ");
+    StringBuilder sb = new StringBuilder();
     int N = Integer.parseInt(st.nextToken());
     int M = Integer.parseInt(st.nextToken());
     for(int i=0; i<N; i++){
       String pokemon = br.readLine();
-      sMap.put(pokemon,Integer.toString(no));
-      iMap.put(Integer.toString(no),pokemon);
+      sMap.put(pokemon,no+"");
+      iMap.put(no+"",pokemon);
       no++;
     }
     for(int i=0; i<M; i++){
@@ -25,7 +26,8 @@ public class Main {
       String answer;
       if(sMap.containsKey(quiz)) answer = sMap.get(quiz);
       else answer = iMap.get(quiz);
-      System.out.println(answer);
+      sb.append(answer).append("\n");
     }
+     System.out.println(sb.toString());
   }
 }
