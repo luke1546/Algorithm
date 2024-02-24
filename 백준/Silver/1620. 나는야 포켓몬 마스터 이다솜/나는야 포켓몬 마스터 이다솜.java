@@ -16,14 +16,15 @@ public class Main {
     int M = Integer.parseInt(st.nextToken());
     for(int i=0; i<N; i++){
       String pokemon = br.readLine();
-      sMap.put(pokemon,no+"");
-      iMap.put(no+"",pokemon);
+      sMap.put(pokemon,Integer.toString(no));
+      iMap.put(Integer.toString(no),pokemon);
       no++;
     }
     for(int i=0; i<M; i++){
       String quiz = br.readLine();
-      String answer = sMap.get(quiz);
-      if(answer == null) answer = iMap.get(quiz);
+      String answer;
+      if(sMap.containsKey(quiz)) answer = sMap.get(quiz);
+      else answer = iMap.get(quiz);
       System.out.println(answer);
     }
   }
