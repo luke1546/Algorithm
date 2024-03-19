@@ -20,12 +20,13 @@ public class Main {
 			if(zombie > damage + prefix[i]) {
 				if(bomb > 0) bomb--;
 				else {
-					System.out.println("NO");
-					return;
+					sb.append("NO");
+					break;
 				}
 			}else shoot(i);
 		}
-		System.out.println("YES");
+		if(sb.length()==0) sb.append("YES");
+		System.out.println(sb.toString());
 	}
 	private static void shoot(int i) {
 		prefix[i]+=damage;
