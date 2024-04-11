@@ -5,25 +5,13 @@ class Solution {
     public int[] solution(String[][] places) {
         int[] answer = new int[5];
         for(int i=0; i<5; i++){
-            int max=1;
+            int min=1;
             map = new String[5][5];
-            for(int j=0; j<5; j++){
-                map[j] = places[i][j].split("");
-                
-            }
-            // System.out.println(Arrays.deepToString(map));
-            
-            for(int x=0; x<5; x++){
-                for(int y=0; y<5; y++){
-                    if(map[x][y].equals("P")){
-                        max = Math.min(max,bfs(x,y));
-                    }
-                    
-                }
-            }
-            answer[i] = max;
+            for(int j=0; j<5; j++) map[j] = places[i][j].split("");
+            for(int x=0; x<5; x++)
+            for(int y=0; y<5; y++) if(map[x][y].equals("P")) min = Math.min(min,bfs(x,y));
+            answer[i] = min;
         }
-        
         return answer;
     }
     
@@ -34,11 +22,7 @@ class Solution {
         visit[x][y] = true;
         while(!dq.isEmpty()){
             int cur[] = dq.poll();
-            // System.out.println(map[cur[0]][cur[1]]);
-            if(cur[2] != 0 && cur[2] <= 2 && map[cur[0]][cur[1]].equals("P")) {
-                // System.out.println(cur[0] + "  " + cur[1]);
-                return 0;
-            }
+            if(cur[2] != 0 && cur[2] <= 2 && map[cur[0]][cur[1]].equals("P")) return 0;
             else if(cur[2] == 2) continue;
             for(int dir[] : dirs){
                 int nr = cur[0] + dir[0];
