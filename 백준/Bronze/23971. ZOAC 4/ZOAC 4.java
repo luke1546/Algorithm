@@ -1,17 +1,1 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
-public class Main{
-  public static void main(String[] args) throws Exception {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st = new StringTokenizer(br.readLine()," ");
-    int R = Integer.parseInt(st.nextToken());
-    int C = Integer.parseInt(st.nextToken());
-    int N = Integer.parseInt(st.nextToken());
-    int M = Integer.parseInt(st.nextToken());
-    int answer = 0;
-    for(int i=0; i<R; i+=N+1) for(int j=0; j<C; j+=M+1) answer++;
-    System.out.println(answer);
-  }
-}
+import java.util.*;public class Main{public static void main(String[]args){Scanner s=new Scanner(System.in);int R,C,N,M;R=s.nextInt();C=s.nextInt();N=s.nextInt();M=s.nextInt();int answer=0;R+=N++;C+=M++;System.out.print(R/N*(C/M));}}
