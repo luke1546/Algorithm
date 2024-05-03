@@ -11,7 +11,6 @@ public class Main {
 	static StringTokenizer st;
 	public static void main(String[] args) throws IOException {
 		st = new StringTokenizer(br.readLine(), " ");
-		HashMap<Long,Integer> hm = new HashMap<>();
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
 		long[][] countries = new long[N][2];
@@ -24,8 +23,6 @@ public class Main {
 				if(j != 0) l *= (long)Math.pow(1000000, j);
 				countries[i][1] += l;
 			}
-			if(hm.containsKey(countries[i][1])) hm.put(countries[i][1], hm.get(countries[i][1])+1);
-			else hm.put(countries[i][1], 0);
 		}
 		Arrays.sort(countries, new Comparator<long[]>() {
 			@Override
@@ -34,14 +31,15 @@ public class Main {
 			}
 		});
 		int rank = 0;
+//		System.out.println(Arrays.deepToString(countries));
 		for(int i=0; i<N; i++) {
 			if(K == countries[i][0]) rank = i+1;
 		}
-		rank -= hm.get(countries[rank-1][1]);
+		for(int i=0; i<rank-1; i++) {
+			if(countries[rank-1][1] == countries[i][1]) rank--;
+		}
 		System.out.println(rank);
 	}
-	
-	
 }
 
 
