@@ -30,15 +30,15 @@ public class Main {
 				return Long.compare(b[1], a[1]);
 			}
 		});
-		int rank = 0;
-//		System.out.println(Arrays.deepToString(countries));
+		long w = 0;
+		int ans = 0;
 		for(int i=0; i<N; i++) {
-			if(K == countries[i][0]) rank = i+1;
+			if(K == countries[i][0]) w = countries[i][1];
 		}
-		for(int i=0; i<rank-1; i++) {
-			if(countries[rank-1][1] == countries[i][1]) rank--;
+		for(int i=0; i<N; i++) {
+			if(w < countries[i][1]) ans++;
 		}
-		System.out.println(rank);
+		System.out.println(ans+1);
 	}
 }
 
