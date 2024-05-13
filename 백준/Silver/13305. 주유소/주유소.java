@@ -17,8 +17,8 @@ public class Main {
 		for(int i=0; i<N; i++)
 			price[i] = Integer.parseInt(st.nextToken());
 		int index = 0;
-		int ans = 0;
-		int minPrice = Integer.MAX_VALUE;
+		long ans = 0;
+		long minPrice = Integer.MAX_VALUE;
 		while(index < N-1) {
 			minPrice = Math.min(minPrice, price[index]);
 			ans+=minPrice * distance[index];
