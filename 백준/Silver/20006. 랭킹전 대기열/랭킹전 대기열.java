@@ -21,15 +21,15 @@ public class Main {
 			this.players.add(player);
 		}
 		
-		@Override
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			if(this.players.size() == M) sb.append("Started!\n");
-			else sb.append("Waiting!\n");
-			Collections.sort(players, (o1,o2) -> o1.id.compareTo(o2.id));
-			for(Player p : players)	sb.append(p.level).append(" ").append(p.id).append("\n");
-			return sb.toString();
-		}
+//		@Override
+//		public String toString() {
+//			StringBuilder sb = new StringBuilder();
+//			if(this.players.size() == M) sb.append("Started!\n");
+//			else sb.append("Waiting!\n");
+//			Collections.sort(players, (o1,o2) -> o1.id.compareTo(o2.id));
+//			for(Player p : players)	sb.append(p.level + " " + p.id + "\n");
+//			return sb.toString();
+//		}
 	}
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,8 +56,13 @@ public class Main {
 			}
 			if(!flag) rooms.add(new Room(player));
 		}
-		for(Room r : rooms) sb.append(r.toString());
-		System.out.println(sb.toString());
+		for(Room r : rooms) {
+			Collections.sort(r.players, (o1,o2) -> o1.id.compareTo(o2.id));
+			if(r.players.size() == M) sb.append("Started!\n");
+			else sb.append("Waiting!\n");
+			for(Player p : r.players) sb.append(p.level + " " + p.id + "\n");
+		}
+		System.out.print(sb.toString());
 	}
 }
 
