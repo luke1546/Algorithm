@@ -4,7 +4,7 @@ import java.util.*;
 class Solution {
     public int solution(String dartResult) {
         int answer = 0;
-        Pattern p = Pattern.compile("([0-9]+)([SDT])([*#]?)");
+        Pattern p = Pattern.compile("([\\d]+)([SDT])([*#]?)");
         Matcher m = p.matcher(dartResult);
         ArrayDeque<Integer> dq = new ArrayDeque<>();
         while(m.find()){
