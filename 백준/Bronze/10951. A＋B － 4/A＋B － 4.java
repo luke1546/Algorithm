@@ -1,9 +1,16 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+
 public class Main{
-    public static void main(String args[]){
-        Scanner sc = new Scanner(System.in);
-        while(sc.hasNextInt())
-            System.out.println(sc.nextInt() + sc.nextInt());
-        sc.close();
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        String str;
+        while((str = br.readLine()) != null){
+            st = new StringTokenizer(str);
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            System.out.println(a + b);
+        }
     }
 }
