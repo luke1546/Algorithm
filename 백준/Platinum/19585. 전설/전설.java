@@ -61,7 +61,7 @@ public class Main{
 	    for(int i=0; i<str.length(); i++){
 	    	if(flag) break;
     		int index = str.charAt(i)-'a';
-    		if(curNode.isEnd && str.length() - i <= 1000 && names.contains(str.substring(i))) return true;
+    		if(curNode.isEnd && names.contains(str.substring(i))) return true;
 		    if(curNode.children[index] != null) {
 		    	curNode = curNode.children[index];
 		    }else break;
