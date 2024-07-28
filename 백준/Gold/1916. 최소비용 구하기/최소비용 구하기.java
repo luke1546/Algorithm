@@ -9,14 +9,13 @@ import java.util.StringTokenizer;
 public class Main {
 	static int V, E, distance[];
 	static boolean visit[];
-	static PriorityQueue<int[]> pq = new PriorityQueue<>((o1,o2) -> o1[1]-o2[1]);
+	static StringTokenizer st;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
 		ArrayList<ArrayList<int[]>> 그래프 = new ArrayList<>();
-		V = Integer.parseInt(st.nextToken());
-		st = new StringTokenizer(br.readLine(), " ");
-		E = Integer.parseInt(st.nextToken());
+		PriorityQueue<int[]> pq = new PriorityQueue<>((o1,o2) -> o1[1]-o2[1]);
+		V = Integer.parseInt(br.readLine());
+		E = Integer.parseInt(br.readLine());
 		distance = new int[V];
 		visit = new boolean[V];
 		Arrays.fill(distance, Integer.MAX_VALUE);
