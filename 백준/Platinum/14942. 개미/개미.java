@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(br.readLine());
 		int logn = (int)(Math.log(N) / Math.log(2));
-		Cave[][] sparseTable = new Cave[logn+1][N];
+		Cave[][] sparseTable = new Cave[logn][N];
 		int energy[] = new int[N];
 		for(int i=0; i<N; i++) {
 			energy[i] = Integer.parseInt(br.readLine());
