@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(br.readLine());
 		int logn = (int)(Math.log(N) / Math.log(2));
-		Cave[][] sparseTable = new Cave[logn][N];
+		Cave[][] sparseTable = new Cave[logn+1][N];
 		int energy[] = new int[N];
 		for(int i=0; i<N; i++) {
 			energy[i] = Integer.parseInt(br.readLine());
@@ -41,7 +41,7 @@ public class Main {
 			graph.get(to).add(new int[] {from, weight});
 		}
 		bfs();
-		for(int i=0; i<logn; i++) {
+		for(int i=0; i<logn+1; i++) {
 			for(int j=1; j<N; j++) {
 				int hole = j;
 				int weight = 0;
@@ -59,7 +59,7 @@ public class Main {
 		}
 		for(int i=0; i<N; i++) {
 			int floor = i;
-			int k = logn-1;
+			int k = logn;
 			while(floor != 0 && k >= 0){
 				if(sparseTable[k][floor] != null && energy[i] - sparseTable[k][floor].weight >= 0) {
 					energy[i] -= sparseTable[k][floor].weight;
