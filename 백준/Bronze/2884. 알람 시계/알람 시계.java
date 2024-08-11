@@ -6,20 +6,14 @@ import java.util.StringTokenizer;
 public class Main {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
+	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		st = new StringTokenizer(br.readLine(), " ");
-		int hour = Integer.parseInt(st.nextToken());
-		int minute = Integer.parseInt(st.nextToken());
-		minute += 15;
-		int x = minute/60;
-		minute%=60;
-		hour = hour + 23 + x;
-		hour%=24;
-		System.out.println(hour + " " + minute);
+		int h = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		m += 15;
+		h = h + 23 + m/60;
+		sb.append(h%24).append(" ").append(m%60);
+		System.out.print(sb);
 	}
 }
-/*
-10 10
-
-9 25
-*/
