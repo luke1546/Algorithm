@@ -31,7 +31,7 @@ public class Main {
 			list.get(from).add(to);
 		}
 		for(int i=0; i<V; i++) {
-			if(!visit[i]) dfs(i);
+			if(parents[i] == 0) dfs(i);
 		}
 		sb.append(SCCS.size()).append("\n");
 		for(int i=0; i<SCCS.size(); i++) Collections.sort(SCCS.get(i));
