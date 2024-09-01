@@ -1,14 +1,11 @@
-import java.util.*;
-
 class Solution {
     boolean solution(String s) {
-        ArrayDeque<Integer> dq = new ArrayDeque<>();
+        int cnt = 0;
         for(int i=0; i<s.length(); i++){
-            if(s.charAt(i) == '(') dq.push(1);
-            else if(!dq.isEmpty()) dq.pop();
+            if(s.charAt(i) == '(') cnt++;
+            else if(cnt > 0) cnt--;
             else return false;
         }
-        if(dq.isEmpty()) return true;
-        return false;
+        return (cnt == 0 ? true : false);
     }
 }
