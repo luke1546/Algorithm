@@ -2,8 +2,7 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] numbers, int target) {
-        int answer = bfs(numbers, target);
-        return answer;
+        return bfs(numbers, target);
     }
     
     public static int bfs(int[] numbers, int target){
