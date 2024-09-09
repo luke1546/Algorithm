@@ -13,9 +13,7 @@ public class Main {
 			arr[i] = n;
 		}
 		for(int i=0; i<N; i++) for(int j=i; j<N; j++) hs.add(arr[i] + arr[j]);
-		ArrayList<Integer> list = new ArrayList<>(hs);
-		Collections.sort(list);
-		for(int i=0;i<N; i++) for(int j=i; j<N; j++) if(Collections.binarySearch(list, arr[j] - arr[i]) >= 0) max = Math.max(max, arr[j]);
+		for(int i=0;i<N; i++) for(int j=i; j<N; j++) if(hs.contains(arr[j] - arr[i])) max = Math.max(max, arr[j]);
 		System.out.print(max);
 	}
 }
