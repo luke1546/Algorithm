@@ -28,7 +28,7 @@ public class Main {
 			else map.put(hash, 1);
 		}
 		for(int key : map.keySet()) ans+=conbination(map.get(key));
-		bw.write(ans+"");
+		bw.write(String.valueOf(ans));
 		bw.flush();
 	}
 	private static int conbination(Integer n) {
@@ -36,11 +36,3 @@ public class Main {
 		return n*(n-1)/2;
 	}
 }
-
-/*
-2 3
-1 3 2
-12 50 31
-
-1
-*/
