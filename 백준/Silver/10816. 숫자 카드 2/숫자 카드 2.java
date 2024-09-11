@@ -12,7 +12,9 @@ public class Main {
 		int N = Integer.parseInt(br.readLine());
 		st = new StringTokenizer(br.readLine());
 		for(int i=0; i<N; i++) {
-			hm.merge(Integer.parseInt(st.nextToken()), 1, Integer::sum);
+            int x = Integer.parseInt(st.nextToken());
+            if(hm.containsKey(x)) hm.put(x, hm.get(x)+1);
+            else hm.put(x,1);
 		}
 		int K = Integer.parseInt(br.readLine());
 		st = new StringTokenizer(br.readLine());
