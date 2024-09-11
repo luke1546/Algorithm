@@ -10,21 +10,15 @@ public class Main {
 		st = new StringTokenizer(br.readLine(), " ");
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
-//		Integer arr[][] = new Integer[N][M];
 		for(int tc=0; tc<N; tc++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			ArrayList<Integer> list = new ArrayList<>();
-			for(int i=0; i<M; i++) {
-//				int x = Integer.parseInt(st.nextToken());
-				list.add(Integer.parseInt(st.nextToken()));
-//				arr[tc][i] = x;
-			}
-//			Collections.sort(list);
+			for(int i=0; i<M; i++) list.add(Integer.parseInt(st.nextToken()));
 			StringBuilder sb = new StringBuilder();
 			for(int i=0; i<M; i++) sb.append(Collections.binarySearch(list, list.get(i))).append(" ");
-			if(map.containsKey(sb.toString())) map.put(sb.toString(), map.get(sb.toString())+1);
-			else map.put(sb.toString(), 1);
-//			map.merge(sb.toString(), 1, Integer::sum);
+			String str = sb.toString();
+			if(map.containsKey(str)) map.put(str, map.get(str)+1);
+			else map.put(str, 1);
 		}
 		for(String s : map.keySet()) ans+=conbination(map.get(s));
 		System.out.print(ans);
