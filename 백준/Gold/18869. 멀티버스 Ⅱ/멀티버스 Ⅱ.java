@@ -12,10 +12,10 @@ public class Main {
 		int M = Integer.parseInt(st.nextToken());
 		for(int tc=0; tc<N; tc++) {
 			st = new StringTokenizer(br.readLine(), " ");
-			ArrayList<Integer> list = new ArrayList<>();
-			for(int i=0; i<M; i++) list.add(Integer.parseInt(st.nextToken()));
 			StringBuilder sb = new StringBuilder();
-			for(int i=0; i<M; i++) sb.append(Collections.binarySearch(list, list.get(i))).append(" ");
+			int arr[] = new int[M];
+			for(int i=0; i<M; i++) arr[i] = Integer.parseInt(st.nextToken());
+			for(int i=0; i<M; i++) sb.append(Arrays.binarySearch(arr, arr[i])).append(" ");
 			String str = sb.toString();
 			if(map.containsKey(str)) map.put(str, map.get(str)+1);
 			else map.put(str, 1);
