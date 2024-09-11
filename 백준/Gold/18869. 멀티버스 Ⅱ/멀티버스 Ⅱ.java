@@ -16,7 +16,9 @@ public class Main {
 			int rank[] = new int[M];
 			for(int i=0; i<M; i++) arr[i] = Integer.parseInt(st.nextToken());
 			for(int i=0; i<M; i++) rank[i] = Arrays.binarySearch(arr, arr[i]);
-			map.merge(Arrays.hashCode(rank), 1, Integer::sum);
+			int hash = Arrays.hashCode(rank);
+			if(map.containsKey(hash)) map.put(hash, map.get(hash)+1);
+			else map.put(hash, 1);
 		}
 		for(int key : map.keySet()) ans+=conbination(map.get(key));
 		System.out.print(ans);
