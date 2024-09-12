@@ -24,17 +24,20 @@ public class Main {
 		for(int i=0; i<list.size(); i++) {
 			for(int j=i+1; j<list.size(); j++) {
 				int v = (list.get(i) + list.get(j))*-1;
-				int left = binarySearch(list, i, j, v, true);
-				int right = binarySearch(list, i, j, v, false);
-				if(left != -1) ans+=(right-left)+1;
+				if(v > list.get(list.size()-1)) continue;
+				int left = binarySearch(list, j, v, true);
+				if(left != -1) {
+					int right = binarySearch(list, j, v, false);
+					ans+=(right-left)+1;
+				}
 			}
 		}
 		bw.write(String.valueOf(ans));
 		bw.flush();
 	}
-	public static int binarySearch(ArrayList<Integer> list, int i, int j, int v, boolean flag) {
+	public static int binarySearch(ArrayList<Integer> list, int j, int v, boolean flag) {
 		int result = -1;
-		int left = Math.max(i, j) + 1;
+		int left = j + 1;
 		int right = list.size()-1;
 		while(left <= right) {
 			int mid = (left+right)/2;
