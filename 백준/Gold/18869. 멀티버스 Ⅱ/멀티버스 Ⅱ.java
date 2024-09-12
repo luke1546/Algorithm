@@ -19,13 +19,12 @@ public class Main {
 		int M = Integer.parseInt(st.nextToken());
 		for(int tc=0; tc<N; tc++) {
 			st = new StringTokenizer(br.readLine(), " ");
-			int arr[] = new int[M];
 			int rank[] = new int[M];
+			int arr[] = new int[M];
 			for(int i=0; i<M; i++) arr[i] = Integer.parseInt(st.nextToken());
 			for(int i=0; i<M; i++) rank[i] = Arrays.binarySearch(arr, arr[i]);
 			int hash = Arrays.hashCode(rank);
-			if(map.containsKey(hash)) map.put(hash, map.get(hash)+1);
-			else map.put(hash, 1);
+            map.put(hash, map.getOrDefault(hash, 0)+1);
 		}
 		for(int key : map.keySet()) ans+=conbination(map.get(key));
 		bw.write(String.valueOf(ans));
@@ -36,3 +35,11 @@ public class Main {
 		return n*(n-1)/2;
 	}
 }
+
+/*
+2 3
+1 3 2
+12 50 31
+
+1
+*/
