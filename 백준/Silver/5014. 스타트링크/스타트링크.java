@@ -9,14 +9,15 @@ public class Main {
 	static StringTokenizer st;
 	static StringBuilder sb = new StringBuilder();
 	static int F,S,G,U,D,ans = Integer.MAX_VALUE;
+	static int dir[] = new int[2];
 	static boolean visit[];
 	public static void main(String[] args) throws IOException {
 		st = new StringTokenizer(br.readLine(), " ");
 		F = Integer.parseInt(st.nextToken());
 		S = Integer.parseInt(st.nextToken());
 		G = Integer.parseInt(st.nextToken());
-		U = Integer.parseInt(st.nextToken());
-		D = Integer.parseInt(st.nextToken());
+		dir[0] = Integer.parseInt(st.nextToken());
+		dir[1] = -1 * Integer.parseInt(st.nextToken());
 		visit = new boolean[F+1];
 		bfs();
 		System.out.println(ans==Integer.MAX_VALUE ? "use the stairs" : ans);
@@ -26,16 +27,16 @@ public class Main {
 		dq.add(new int[] {S,0});
 		while(!dq.isEmpty()) {
 			int cur[] = dq.poll();
-			if(cur[0] == G) ans = Math.min(ans, cur[1]);
-			int up = cur[0] + U;
-			int down = cur[0] - D;
-			if(up <= F && !visit[up]) {
-				visit[up] = true;
-				dq.add(new int[] {up, cur[1]+1});
+			if(cur[0] == G) {
+				ans = cur[1];
+				return;
 			}
-			if(down >= 1 && !visit[down]) {
-				visit[down] = true;
-				dq.add(new int[] {down, cur[1]+1});
+			for(int d : dir) {
+				int floor = cur[0] + d;
+				if(floor >= 1 && floor <= F && !visit[floor]) {
+					visit[floor] = true;
+					dq.add(new int[] {floor, cur[1]+1});
+				}
 			}
 		}
 	}
