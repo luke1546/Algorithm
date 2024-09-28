@@ -1,10 +1,14 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class Main{
-    public static void main(String args[]){
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int ans = 0;
-        for(int i=1; i<=N; i++) ans+=i;
-        System.out.println(ans);
-    }
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	public static void main(String[] args) throws Exception {
+		int N = Integer.parseInt(br.readLine());
+		bw.write(String.valueOf(N!=1 ? (1+N)*(N/2)+(N%2*((1+N)/2)) : 1));
+		bw.flush();
+	}
 }
