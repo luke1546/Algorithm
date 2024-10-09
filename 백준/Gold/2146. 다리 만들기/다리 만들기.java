@@ -67,6 +67,8 @@ public class Main {
 			int cur[] = queue.poll();
 			if(map[cur[0]][cur[1]] != 0 && map[cur[0]][cur[1]] != cnt) {
 				min = Math.min(min, cur[2]-1);
+				queue.clear();
+				break;
 			}
 			for(int dir[] : dirs) {
 				int nr = dir[0] + cur[0];
