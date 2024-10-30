@@ -7,38 +7,42 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int V, E, distance[];
-	static boolean visit[];
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringBuilder sb = new StringBuilder();
 	static StringTokenizer st;
+	static int V,E, distance[];
+	static boolean visit[];
+	static ArrayList<ArrayList<int[]>> graph;
+	static PriorityQueue<int[]> pq;
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		ArrayList<ArrayList<int[]>> 그래프 = new ArrayList<>();
-		PriorityQueue<int[]> pq = new PriorityQueue<>((o1,o2) -> o1[1]-o2[1]);
-		V = Integer.parseInt(br.readLine());
-		E = Integer.parseInt(br.readLine());
+		int V = Integer.parseInt(br.readLine());
+		int E = Integer.parseInt(br.readLine());
 		distance = new int[V];
 		visit = new boolean[V];
 		Arrays.fill(distance, Integer.MAX_VALUE);
-		for(int i=0; i<V; i++)	그래프.add(new ArrayList<>());
+		graph = new ArrayList<>();
+		pq = new PriorityQueue<>((o1,o2) -> o1[1] - o2[1]);
+		for(int i=0; i<V; i++) graph.add(new ArrayList<>());
 		for(int i=0; i<E; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
+			st = new StringTokenizer(br.readLine());
 			int from = Integer.parseInt(st.nextToken())-1;
 			int to = Integer.parseInt(st.nextToken())-1;
 			int weight = Integer.parseInt(st.nextToken());
-			그래프.get(from).add(new int[] {to,weight});
+			graph.get(from).add(new int[] {to, weight});
 		}
-		st = new StringTokenizer(br.readLine(), " ");
+		st = new StringTokenizer(br.readLine());
 		int start = Integer.parseInt(st.nextToken())-1;
 		int end = Integer.parseInt(st.nextToken())-1;
-		pq.offer(new int[] {start, 0});
+		
 		distance[start] = 0;
+		pq.add(new int[] {start, 0});
 		while(!pq.isEmpty()) {
 			int cur[] = pq.poll();
-			if(visit[cur[0]]) continue;
+            if(visit[cur[0]]) continue;
 			visit[cur[0]] = true;
-			for(int v[] : 그래프.get(cur[0])) {
-				if(!visit[v[0]] && distance[v[0]] > cur[1] + v[1]) {
-					distance[v[0]] = cur[1] + v[1];
+			for(int[] v : graph.get(cur[0])) {
+				if(!visit[v[0]] && distance[v[0]] > v[1] + cur[1]) {
+					distance[v[0]] = v[1] + cur[1];
 					pq.offer(new int[] {v[0], distance[v[0]]});
 				}
 			}
@@ -46,6 +50,7 @@ public class Main {
 		System.out.println(distance[end]);
 	}
 }
+
 
 /*
 bj_1916
