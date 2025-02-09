@@ -17,5 +17,5 @@ bool countM(int x){
     for(int i=1; i<=x/2; i++){
         if(!(x%i)) count++;
     }
-    return count%2;
+    return count&1;
 }
