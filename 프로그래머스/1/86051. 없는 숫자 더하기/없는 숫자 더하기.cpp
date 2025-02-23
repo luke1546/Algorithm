@@ -1,10 +1,9 @@
 #include <string>
 #include <vector>
+#include <numeric>
 
 using namespace std;
 
 int solution(vector<int> numbers) {
-    int n = 45;
-    for(int i=0; i<numbers.size(); i++) n-=numbers[i];
-    return n;
+    return 45 - accumulate(numbers.begin(), numbers.end(), 0);
 }
