@@ -4,13 +4,12 @@
 using namespace std;
 
 int solution(int num) {
-    int cnt = 0;
+    int count = 0;
     long long n = num;
-    while(n!=1){
-        if(cnt == 500) break;
+    while(n != 1 && count < 500){
         if(n&1) n = n*3+1;
         else n/=2;
-        cnt++;
+        count++;
     }
-    return cnt == 500 ? -1 : cnt;
+    return count >= 500 ? -1 : count;
 }
