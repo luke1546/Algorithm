@@ -1,13 +1,15 @@
 #include <string>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
 string solution(int n) {
-    string answer = "";
+    ostringstream oss;
+    bool f = false;
     for(int i=0; i<n; i++){
-        if(i&1) answer+="박";
-        else answer+="수";
+        f=!f;
+        oss << (f ? "수" : "박");
     }
-    return answer;
+    return oss.str();
 }
