@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void replaceAll(string& s, string from, string to){
-    int pos = 0;
-    while((pos = s.find(from, pos)) != string::npos){
-        s.replace(pos, from.size(), to);
-        pos += to.size();
-    }
+void replaceAll(string& s, const string& from, const string& to){
+	int pos = 0;
+	while((pos = s.find(from, pos)) != string::npos){
+		s.replace(pos, from.size(), to);
+		pos += to.size();
+	}
 }
 
 int solution(string s) {
