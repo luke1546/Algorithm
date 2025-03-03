@@ -10,7 +10,7 @@ int solution(vector<vector<string>> board, int h, int w) {
     int R = board.size();
     int C = board.size();
     string str = board[h][w];
-    for(auto dir : dirs){
+    for(int* dir : dirs){
         int nr = h + dir[0];
         int nc = w + dir[1];
         if(nr >= 0 && nr < R && nc >= 0 && nc < C){
