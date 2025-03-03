@@ -17,19 +17,14 @@ vector<int> solution(int N, vector<int> stages) {
         v[i-1]++;
         prefix[i-1]++;
     }
-    for(int i=prefix.size()-1; i>0; i--){
+    for(int i=prefix.size()-1; i>0; i--)
         prefix[i-1]+=prefix[i];
-    }
-    prefix.pop_back();
-    for(int i=0; i<prefix.size(); i++){
+    for(int i=0; i<prefix.size()-1; i++){
         if(prefix[i] == 0) result[i][0] = 0;
         else result[i][0] = v[i]/prefix[i];
         result[i][1] = i+1;
     }
     sort(result.begin(), result.end(), compare);
-    
-    
-    
     for(auto v : result) answer.push_back(v[1]);
     return answer;
 }
