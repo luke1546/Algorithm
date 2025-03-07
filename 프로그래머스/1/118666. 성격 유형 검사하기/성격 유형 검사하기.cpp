@@ -2,8 +2,6 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include <iostream>
-
 using namespace std;
 bool compare(const pair<char, int>& p1, const pair<char, int>& p2){
     return p1.second == p2.second ? p1.first < p2.first : p1.second > p2.second;
@@ -12,14 +10,6 @@ bool compare(const pair<char, int>& p1, const pair<char, int>& p2){
 string solution(vector<string> survey, vector<int> choices) {
     string answer = "";
     map<char, int> typeScore;
-    typeScore['R'];
-    typeScore['T'];
-    typeScore['C'];
-    typeScore['F'];
-    typeScore['J'];
-    typeScore['M'];
-    typeScore['A'];
-    typeScore['N'];
     for(int i=0; i<choices.size(); i++){
         switch(choices[i]){
             case 1:
@@ -38,6 +28,5 @@ string solution(vector<string> survey, vector<int> choices) {
     answer += (typeScore['C'] >= typeScore['F'] ? "C" : "F");
     answer += (typeScore['J'] >= typeScore['M'] ? "J" : "M");
     answer += (typeScore['A'] >= typeScore['N'] ? "A" : "N");
-    for(auto s : typeScore) cout << s.first << s.second << "\n";
     return answer;
 }
