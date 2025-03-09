@@ -11,7 +11,7 @@ int solution(int n, int w, int num) {
     int cnt = 1;
     int nr, nc;
     for(int i=0; i<R; i++){
-        for(int j=0; j<C; j++){
+        for(int j=0; j<C && cnt <= n; j++){
             int c = j;
             if(i&1) c = C-j-1;
             map[i][c] = cnt;
@@ -20,9 +20,7 @@ int solution(int n, int w, int num) {
                 nc = c;
             }
             cnt++;
-            if(cnt > n) break;
         }
-        if(cnt > n) break;
     }
     
     while(true){
