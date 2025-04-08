@@ -55,9 +55,10 @@ public class Main {
 			}
 			int r = cur[0] + dirs[cur[2]][0];
 			int c = cur[1] + dirs[cur[2]][1];
+			int remainder = target-sum;
 			if(r >= 0 && r < N && c >= 0 && c < N) {
-				map[r][c]+=(target-sum);
-			}else ans += (target-sum);
+				map[r][c]+=remainder;
+			}else ans+=remainder;
 		}
 	}
 	private static void tonadolist() {
