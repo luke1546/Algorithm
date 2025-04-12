@@ -25,19 +25,20 @@ public class Main {
 		System.out.println(ans==4? -1 : ans);
 	}
 	private static void dfs(int r, int c, int cnt) {
-		if(cnt == 4) return;
+		if(cnt >= ans) return;
 		if(check()) {
 			ans = Math.min(ans, cnt);
 			return;
 		}
 		for(int i=r; i<R; i++) {
-			for(int j=0; j<C; j++) {
+			for(int j=c; j<C; j++) {
 				if(canInstall(i,j)) {
 					map[i][j] = true;
 					dfs(i,j, cnt+1);
 					map[i][j] = false;
 				}
 			}
+			c = 0;
 		}
 	}
 	private static boolean canInstall(int i, int j) {

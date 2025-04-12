@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 15300 KB, 시간: 4764 ms
+메모리: 14576 KB, 시간: 3780 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2025년 4월 12일 15:48:46
+2025년 4월 12일 16:00:22
 
 ### 문제 설명
 
@@ -34,7 +34,7 @@
 	<tbody>
 		<tr>
 			<td style="width: 50%; text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/15684/3.png" style="width: 390px; height: 300px;"></td>
-			<td style="width: 50%; text-align: center;"><img alt="" src="" style="width: 390px; height: 300px;"></td>
+			<td style="width: 50%; text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/15684/4.png" style="width: 390px; height: 300px;"></td>
 		</tr>
 		<tr>
 			<td style="width: 50%; text-align: center;">1번 세로선</td>
