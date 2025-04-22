@@ -1,95 +1,74 @@
 import java.util.*;
 
 class Solution {
-
-    static class Position {
-        int r, c;
-        public Position(int r, int c) {
-            this.r = r;
-            this.c = c;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Position position = (Position) o;
-            return r == position.r && c == position.c;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(r, c);
-        }
-    }
+    static int ans = 0;
+    static ArrayDeque<int[]> dqCur = new ArrayDeque<>();
+    static ArrayDeque<ArrayDeque<Integer>> dqTarget = new ArrayDeque<>();
+    static HashMap<Integer, Integer> map = new HashMap<>(); // String → int 키 변경
+    static int gPoints[][];
 
     public int solution(int[][] points, int[][] routes) {
-        int answer = 0;
-
-        Map<Integer, Position> pointMap = new HashMap<>();
-        for (int i = 0; i < points.length; i++) {
-            pointMap.put(i + 1, new Position(points[i][0], points[i][1]));
-        }
-
-        List<List<Position>> robotPaths = new ArrayList<>();
-
+        gPoints = points;
         for (int[] route : routes) {
-            List<Position> path = new ArrayList<>();
-            Position current = pointMap.get(route[0]);
-            path.add(current);
+            int i = points[route[0] - 1][0];
+            int j = points[route[0] - 1][1];
+            dqCur.offer(new int[]{i, j});
 
-            for (int j = 1; j < route.length; j++) {
-                Position next = pointMap.get(route[j]);
-                path.addAll(calculatePath(current, next));
-                current = next;
-            }
-
-            robotPaths.add(path);
+            ArrayDeque<Integer> dq = new ArrayDeque<>();
+            for (int t : route) dq.offer(t);
+            dqTarget.offer(dq);
         }
 
-        int maxTime = 0;
-        for (List<Position> path : robotPaths) {
-            maxTime = Math.max(maxTime, path.size());
+        while (!dqCur.isEmpty()) {
+            crashCheck();
+            move();
         }
 
-        for (int t = 0; t < maxTime; t++) {
-            Map<Position, Integer> positionCount = new HashMap<>();
-
-            for (List<Position> path : robotPaths) {
-                if (t < path.size()) {
-                    Position pos = path.get(t);
-                    positionCount.put(pos, positionCount.getOrDefault(pos, 0) + 1);
-                }
-            }
-
-            for (int count : positionCount.values()) {
-                if (count > 1) {
-                    answer++;
-                }
-            }
-        }
-
-        return answer;
+        return ans;
     }
 
-    private List<Position> calculatePath(Position start, Position end) {
-        List<Position> path = new ArrayList<>();
+    public static void crashCheck() {
+        int size = dqCur.size();
+        map.clear();
 
-        int r = start.r;
-        int c = start.c;
-
-        while (r != end.r) {
-            if (r < end.r) r++;
-            else r--;
-            path.add(new Position(r, c));
+        for (int i = 0; i < size; i++) {
+            int[] cur = dqCur.poll();
+            int key = cur[0] * 1000 + cur[1]; // 좌표 → 정수 키
+            map.put(key, map.getOrDefault(key, 0) + 1);
+            dqCur.offer(cur);
         }
 
-        while (c != end.c) {
-            if (c < end.c) c++;
-            else c--;
-            path.add(new Position(r, c));
+        for (int v : map.values()) {
+            if (v > 1) ans++;
         }
+    }
 
-        return path;
+    public static void move() {
+        int size = dqCur.size();
+        for (int i = 0; i < size; i++) {
+            int[] cur = dqCur.poll();
+            ArrayDeque<Integer> dq = dqTarget.poll();
+            boolean bCheck = getNextCur(cur, dq);
+            if (bCheck) {
+                dqCur.offer(cur);
+                dqTarget.offer(dq);
+            }
+        }
+    }
+
+    public static boolean getNextCur(int[] cur, ArrayDeque<Integer> dq) {
+        int[] target = {gPoints[dq.peek() - 1][0], gPoints[dq.peek() - 1][1]};
+        if (target[0] != cur[0]) {
+            if (target[0] > cur[0]) cur[0]++;
+            else cur[0]--;
+        } else if (target[1] != cur[1]) {
+            if (target[1] > cur[1]) cur[1]++;
+            else cur[1]--;
+        } else {
+            dq.poll();
+            if (dq.isEmpty()) return false;
+            return getNextCur(cur, dq);
+        }
+        return true;
     }
 }
