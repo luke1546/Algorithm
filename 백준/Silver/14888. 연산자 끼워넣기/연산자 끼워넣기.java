@@ -6,15 +6,12 @@ public class Main {
 	static StringTokenizer st;
 	static StringBuilder sb = new StringBuilder();
 	static int arr[], op[], selected[];
-	static int N, opList[], max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-	static boolean visit[];
+	static int N, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(br.readLine());
 		arr = new int[N];
 		op = new int[4];
-		visit = new boolean[N-1];
 		selected = new int[N-1];
-		opList = new int[N-1];
 		st = new StringTokenizer(br.readLine(), " ");
 		for(int i=0; i<N; i++) {
 			int n = Integer.parseInt(st.nextToken());
@@ -25,57 +22,42 @@ public class Main {
 			int x = Integer.parseInt(st.nextToken());
 			op[i] = x;
 		}
-		int index = 0;
-		for(int i=0; i<N-1; i++) {
-			while(op[index] == 0) {
-				index++;
-			}
-			op[index]--;
-			opList[i] = index;
-			//index 정보
-			// 0 : +, 1 : -, 2 : * , 3 : /
-		}
-		perm(0);
+		dfs(0, arr[0]);
 		System.out.println(max);
 		System.out.println(min);
 	}
-	private static void perm(int cnt) {
-		if(cnt == N-1) {
-			int res = calc(selected);
+	private static void dfs(int cnt, int res) 
+	{
+		if(cnt == N-1) 
+		{
 			max = Math.max(max, res);
 			min = Math.min(min, res);
 			return;
 		}
-		for(int i=0; i<N-1; i++) {
-			if(visit[i]) continue;
-			visit[i] = true;
-			selected[cnt] = i;
-			perm(cnt+1);
-			visit[i] = false;
-		}
-	}
-	private static int calc(int[] selected) {
-		int res = arr[0];
-		for(int i=0; i<selected.length; i++) {
-			int op = opList[selected[i]];
-			switch(op) {
+		for(int i=0; i<4; i++) 
+		{
+			if(op[i] == 0) continue;
+			op[i]--;
+			int next = res;
+			switch(i) 
+			{
 			case 0:
-				res+=arr[i+1];
+				next+=arr[cnt+1];
 				break;
 			case 1:
-				res-=arr[i+1];
+				next-=arr[cnt+1];
 				break;
 			case 2:
-				res*=arr[i+1];
+				next*=arr[cnt+1];
 				break;
 			case 3:
-				res/=arr[i+1];
+				next/=arr[cnt+1];
 				break;
 			}
+			dfs(cnt+1, next);
+			op[i]++;
 		}
-		return res;
 	}
-	
 }
 
 /*
