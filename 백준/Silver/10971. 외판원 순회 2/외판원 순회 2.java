@@ -35,6 +35,7 @@ public class Main {
 			min = Math.min(min, cost + map[r][first]);
 			return;
 		}
+		if(cost >= min) return;
 		for(int c=0; c<N; c++) {
 			if(map[r][c] == 0) continue;
 			if(visit[c]) continue;
